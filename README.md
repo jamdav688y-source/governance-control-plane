@@ -11,7 +11,16 @@ This repository models a control-plane architecture that enforces:
 - Reversibility enforcement
 
 Designed for teams deploying multi-agent or automated AI systems where operational risk, audit exposure, and escalation boundaries must be explicit.
+## Repository Map
 
+- **Architecture** → `docs/architecture.md`
+- **Decision Custody Schema** → `schemas/decision-custody.yaml`
+- **System Invariants** → `invariants/system-invariants.md`
+- **Production Failure Scenarios** → `cases/production-failure-scenarios.md`
+- **Runtime Enforcement Example** → `examples/runtime-enforcement-pseudocode.md`
+- **Deployment Readiness Checklist** → `checklists/deployment-readiness.md`
+- **Threat Model** → `threat-model/abuse-cases.md`
+- **Governance Charter** → `governance/CHARTER.md`
 ---
 
 ## Why This Exists
