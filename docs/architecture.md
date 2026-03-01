@@ -20,6 +20,19 @@ The Governance Control Plane is a runtime governance layer that sits between hum
    - Pre-maps failure surfaces and known escalation patterns.
 
 6. Reversibility Gate
+
+7. ## Control-Plane Overview
+
+```mermaid
+flowchart TD
+    H[Human Authority] --> CP[Governance Control Plane]
+    CP --> DR[Decision Registry]
+    CP --> CE[Constraint Engine]
+    CE --> A[Agent Execution Layer]
+    A --> RM[Runtime Monitor]
+    RM --> FG[Failure Geometry Mapping]
+    FG --> RG[Reversibility Gate]
+    RG --> CP
    - Blocks irreversible actions without explicit authorization and rollback states.
 
 ## Operating Principle
