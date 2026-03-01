@@ -1,92 +1,41 @@
 # Governance Control Plane
+**Runtime governance for enterprise AI systems operating with real execution authority.**
 
-A production governance layer for AI systems operating in enterprise environments.
+AI systems don’t fail because they’re unintelligent.  
+They fail because **autonomy expands faster than custody**.
 
-This repository models a control-plane architecture that enforces:
-
-- Decision custody mapping
-- Bounded autonomy
-- Runtime constraint validation
-- Failure surface modeling
-- Reversibility enforcement
-
-Designed for teams deploying multi-agent or automated AI systems where operational risk, audit exposure, and escalation boundaries must be explicit.
-## Repository Map
-
-- **Architecture** → `docs/architecture.md`
-- **Decision Custody Schema** → `schemas/decision-custody.yaml`
-- **System Invariants** → `invariants/system-invariants.md`
-- **Production Failure Scenarios** → `cases/production-failure-scenarios.md`
-- **Runtime Enforcement Example** → `examples/runtime-enforcement-pseudocode.md`
-- **Deployment Readiness Checklist** → `checklists/deployment-readiness.md`
-- **Threat Model** → `threat-model/abuse-cases.md`
-- **Governance Charter** → `governance/CHARTER.md`
----
-
-## Why This Exists
-
-Most AI governance discussions remain abstract.
-
-Production systems fail in concrete ways:
-
-- Authority drift
-- Silent automation creep
-- Irreversible decision paths
-- Cross-agent escalation loops
-- Unbounded execution surfaces
-- Diffused accountability
-
-A control-plane is required to:
-
-- Define decision custody
-- Enforce runtime constraints
-- Detect failure geometry early
-- Preserve reversibility
-- Maintain bounded autonomy
-
-This repository documents that structure.
+This repository defines a control-plane architecture that enforces:
+- **Decision Custody** (owner, stop-authority, escalation chain)
+- **Bounded Execution Surfaces** (what agents are allowed to do)
+- **Runtime Constraint Validation** (pre-execution checks)
+- **Failure Geometry Modeling** (known failure surfaces + triggers)
+- **Reversibility Enforcement** (rollback state or block)
+- **Escalation Ceilings** (rate limits + recursion depth caps)
 
 ---
 
-## Core Architecture Layers
+## The Problem This Solves
 
-1. Identity Layer  
-   Defines role authority, stop-authority, and escalation ownership.
+Most “AI governance” is policy language layered on top of systems that can still:
+- drift into broader permissions (“silent automation creep”)
+- execute irreversible actions without explicit authorization
+- chain agents into unbounded loops
+- dilute accountability across teams until incidents become blame fog
 
-2. Decision Custody Layer  
-   Maps who owns which decision, under what constraints, and with what rollback rights.
-
-3. Constraint Layer  
-   Hard and soft boundaries governing model behavior.
-
-4. Runtime Monitoring Layer  
-   Observability, drift detection, escalation triggers.
-
-5. Failure Geometry Layer  
-   Mapping failure surfaces before they manifest.
-
-6. Reversibility Layer  
-   Ensuring no system crosses irreversible thresholds without custody validation.
+A control-plane prevents that by making **authority, custody, and reversibility executable constraints**.
 
 ---
 
-## Control-Plane Diagram
+## Operating Model (Control Surface)
+
+The control-plane sits between human authority and AI execution:
 
 ```mermaid
 flowchart TD
-
-User[Human Authority]
-CP[Governance Control Plane]
-Agents[Multi-Agent System]
-Constraints[Constraint Engine]
-Monitor[Runtime Monitor]
-Failure[Failure Geometry Mapping]
-Rollback[Reversibility Gate]
-
-User --> CP
-CP --> Agents
-CP --> Constraints
-Agents --> Monitor
-Monitor --> Failure
-Failure --> Rollback
-Rollback --> CP
+  H[Human Authority] --> CP[Governance Control Plane]
+  CP --> A[Multi-Agent Execution Layer]
+  CP --> C[Constraint Engine]
+  A --> M[Runtime Monitor]
+  M --> F[Failure Geometry Mapping]
+  F --> R[Reversibility Gate]
+  R --> CP
