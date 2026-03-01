@@ -1,8 +1,16 @@
 # Governance Control Plane
 
-Production-grade AI control-plane architecture for multi-agent systems.
+A production governance layer for AI systems operating in enterprise environments.
 
-This repository defines a runtime governance layer for AI systems operating in production environments where failure is not theoretical.
+This repository models a control-plane architecture that enforces:
+
+- Decision custody mapping
+- Bounded autonomy
+- Runtime constraint validation
+- Failure surface modeling
+- Reversibility enforcement
+
+Designed for teams deploying multi-agent or automated AI systems where operational risk, audit exposure, and escalation boundaries must be explicit.
 
 ---
 
